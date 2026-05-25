@@ -25,8 +25,8 @@ export default function HeroSection({ onContactClick }: HeroSectionProps) {
       id="hero"
       className="relative w-full h-screen flex flex-col justify-between overflow-hidden select-none bg-[#0C0C0C]"
     >
-      {/* Absolute Hero Portrait (Centered absolutely with z-10) */}
-      <div className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 flex justify-center items-end">
+      {/* Absolute Hero Portrait (Centered absolutely with z-10 on desktop only) */}
+      <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2 z-10 sm:w-[360px] md:w-[440px] lg:w-[520px] sm:bottom-0 sm:top-auto sm:translate-y-0 justify-center items-end">
         <FadeIn delay={0.6} y={30} duration={0.8} className="w-full">
           <Magnet
             padding={150}
@@ -83,11 +83,23 @@ export default function HeroSection({ onContactClick }: HeroSectionProps) {
       </nav>
 
       {/* Massive Hero Heading (Lowercase "i" and curly apostrophe via dynamic title mapping) */}
-      <div className="w-full px-6 md:px-10 flex-grow flex items-center justify-center overflow-hidden z-0">
+      <div className="w-full px-6 md:px-10 flex-grow flex flex-col items-center justify-center overflow-hidden z-0">
+        {/* Mobile portrait: only visible below sm, positioned neatly above the text without overlapping */}
+        <div className="flex sm:hidden mb-4 w-[120px] justify-center items-center">
+          <FadeIn delay={0.6} y={15} duration={0.8} className="w-full">
+            <img
+              src={portraitUrl}
+              alt="Kien Le Portrait Mobile"
+              className="w-full h-auto object-contain pointer-events-auto select-none drop-shadow-[0_10px_22px_rgba(0,0,0,0.55)]"
+              referrerPolicy="no-referrer"
+            />
+          </FadeIn>
+        </div>
+
         <FadeIn delay={0.15} y={40} className="w-full text-center">
           <h1
             id="hero-heading"
-            className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5 select-none"
+            className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-2 sm:mt-4 md:-mt-5 select-none"
           >
             {title}
           </h1>
